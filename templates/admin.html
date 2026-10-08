@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Админ-панель — PythonSchool</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+
+            font-family: Arial, sans-serif;
+
+            color: #e6edf3;
+
+            background:
+                linear-gradient(
+                    rgba(8, 13, 25, 0.95),
+                    rgba(8, 13, 25, 0.98)
+                ),
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 39px,
+                    rgba(255, 255, 255, 0.03) 40px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 39px,
+                    rgba(255, 255, 255, 0.03) 40px
+                );
+
+            background-color: #080d19;
+        }
+
+
+        /* МЕНЮ */
+
+        .navbar {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 18px 30px;
+
+            background: rgba(10, 15, 30, 0.95);
+
+            border-bottom: 1px solid #29344d;
+
+        }
+
+
+        .logo {
+
+            font-size: 22px;
+
+            font-weight: bold;
+
+        }
+
+
+        .logout {
+
+            color: white;
+
+            background: #da3633;
+
+            padding: 10px 16px;
+
+            border-radius: 8px;
+
+            text-decoration: none;
+
+        }
+
+
+        .logout:hover {
+
+            background: #f85149;
+
+        }
+
+
+        /* ОСНОВА */
+
+        .container {
+
+            max-width: 1100px;
+
+            margin: 50px auto;
+
+            padding: 20px;
+
+        }
+
+
+        h1 {
+
+            font-size: 40px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .subtitle {
+
+            color: #8b949e;
+
+            margin-bottom: 40px;
+
+        }
+
+
+        /* СТАТИСТИКА */
+
+        .stats {
+
+            display: grid;
+
+            grid-template-columns: repeat(
+                auto-fit,
+                minmax(230px, 1fr)
+            );
+
+            gap: 20px;
+
+        }
+
+
+        .card {
+
+            background: #161d30;
+
+            border: 1px solid #29344d;
+
+            border-radius: 16px;
+
+            padding: 30px;
+
+            transition: 0.2s;
+
+        }
+
+
+        .card:hover {
+
+            transform: translateY(-4px);
+
+            border-color: #5c6f91;
+
+        }
+
+
+        .icon {
+
+            font-size: 40px;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .card h2 {
+
+            margin: 0;
+
+            font-size: 38px;
+
+        }
+
+
+        .card p {
+
+            color: #8b949e;
+
+            margin-bottom: 0;
+
+        }
+
+
+        /* БЛОК САЙТА */
+
+        .info {
+
+            margin-top: 30px;
+
+            padding: 25px;
+
+            background: #161d30;
+
+            border: 1px solid #29344d;
+
+            border-radius: 16px;
+
+        }
+
+
+        .info h2 {
+
+            margin-top: 0;
+
+        }
+
+
+        .status {
+
+            display: inline-block;
+
+            padding: 8px 12px;
+
+            border-radius: 8px;
+
+            background: #238636;
+
+            color: white;
+
+        }
+
+
+        /* ТЕЛЕФОН */
+
+        @media (max-width: 600px) {
+
+            .navbar {
+
+                flex-direction: column;
+
+                gap: 15px;
+
+            }
+
+            .container {
+
+                margin-top: 25px;
+
+            }
+
+            h1 {
+
+                font-size: 32px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- МЕНЮ -->
+
+<nav class="navbar">
+
+    <div class="logo">
+
+        🐍 PythonSchool — Admin
+
+    </div>
+
+
+    <a
+        class="logout"
+        href="/admin/logout"
+    >
+
+        Выйти
+
+    </a>
+
+</nav>
+
+
+
+<!-- ОСНОВА -->
+
+<div class="container">
+
+
+    <h1>
+
+        🛠️ Панель администратора
+
+    </h1>
+
+
+    <p class="subtitle">
+
+        Управление и статистика PythonSchool
+
+    </p>
+
+
+
+    <!-- СТАТИСТИКА -->
+
+    <div class="stats">
+
+
+        <div class="card">
+
+            <div class="icon">
+
+                👥
+
+            </div>
+
+            <h2>
+
+                {{ users_count }}
+
+            </h2>
+
+            <p>
+
+                Зарегистрированных пользователей
+
+            </p>
+
+        </div>
+
+
+
+        <div class="card">
+
+            <div class="icon">
+
+                📚
+
+            </div>
+
+            <h2>
+
+                {{ lessons_count }}
+
+            </h2>
+
+            <p>
+
+                Всего уроков
+
+            </p>
+
+        </div>
+
+
+
+        <div class="card">
+
+            <div class="icon">
+
+                🟢
+
+            </div>
+
+            <h2>
+
+                Онлайн
+
+            </h2>
+
+            <p>
+
+                Статус сайта
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- ИНФОРМАЦИЯ -->
+
+    <div class="info">
+
+        <h2>
+
+            📊 Информация о сайте
+
+        </h2>
+
+
+        <p>
+
+            Количество уроков:
+
+            <strong>
+
+                {{ lessons_count }}
+
+            </strong>
+
+        </p>
+
+
+        <p>
+
+            Зарегистрировано пользователей:
+
+            <strong>
+
+                {{ users_count }}
+
+            </strong>
+
+        </p>
+
+
+        <p>
+
+            Статус:
+
+            <span class="status">
+
+                Сайт работает
+
+            </span>
+
+        </p>
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

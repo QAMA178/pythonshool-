@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Урок {{ lesson.number }} — PythonSchool</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background:
+                linear-gradient(rgba(5, 10, 20, 0.94), rgba(5, 10, 20, 0.97)),
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 39px,
+                    rgba(50, 100, 150, 0.08) 40px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 39px,
+                    rgba(50, 100, 150, 0.08) 40px
+                );
+            color: #e6edf3;
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+        }
+
+        /* =========================
+           НАВИГАЦИЯ
+        ========================= */
+
+        .navbar {
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 6%;
+            background: rgba(10, 15, 28, 0.96);
+            border-bottom: 1px solid #263247;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 23px;
+            font-weight: bold;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #58a6ff;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-button {
+            text-decoration: none;
+            color: #c9d1d9;
+            padding: 10px 16px;
+            border-radius: 8px;
+            border: 1px solid #303b52;
+            background: #111827;
+            transition: 0.2s;
+        }
+
+        .nav-button:hover {
+            color: white;
+            background: #1c273a;
+            border-color: #58a6ff;
+        }
+
+        .home-button {
+            color: white;
+            background: #238636;
+            border-color: #238636;
+        }
+
+        .home-button:hover {
+            background: #2ea043;
+            border-color: #2ea043;
+        }
+
+        /* =========================
+           ОСНОВНОЙ КОНТЕНТ
+        ========================= */
+
+        .container {
+            width: min(1000px, 92%);
+            margin: 45px auto;
+        }
+
+        .lesson-header {
+            background: rgba(16, 24, 40, 0.94);
+            border: 1px solid #29364d;
+            border-radius: 18px;
+            padding: 35px;
+            margin-bottom: 25px;
+        }
+
+        .lesson-number {
+            display: inline-block;
+            color: #58a6ff;
+            background: #132238;
+            border: 1px solid #25456c;
+            padding: 7px 13px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            margin: 0 0 15px;
+            font-size: 38px;
+            color: white;
+        }
+
+        .description {
+            color: #aeb9c8;
+            line-height: 1.7;
+            font-size: 17px;
+            white-space: pre-line;
+        }
+
+        /* =========================
+           БЛОКИ УРОКА
+        ========================= */
+
+        .lesson-section {
+            background: rgba(16, 24, 40, 0.94);
+            border: 1px solid #29364d;
+            border-radius: 18px;
+            padding: 30px;
+            margin-bottom: 25px;
+        }
+
+        .lesson-section h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #ffffff;
+            font-size: 25px;
+        }
+
+        .theory {
+            color: #c9d1d9;
+            font-size: 17px;
+            line-height: 1.8;
+            white-space: pre-line;
+        }
+
+        /* =========================
+           КОД
+        ========================= */
+
+        .code-wrapper {
+            position: relative;
+        }
+
+        .code-label {
+            background: #080d17;
+            border: 1px solid #303b52;
+            border-bottom: none;
+            padding: 10px 15px;
+            border-radius: 10px 10px 0 0;
+            color: #8b949e;
+            font-family: Consolas, monospace;
+            font-size: 13px;
+        }
+
+        pre {
+            margin: 0;
+            padding: 22px;
+            overflow-x: auto;
+            background: #080d17;
+            border: 1px solid #303b52;
+            border-radius: 0 0 10px 10px;
+            color: #e6edf3;
+            font-family: Consolas, "Courier New", monospace;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        code {
+            font-family: inherit;
+        }
+
+        /* =========================
+           ЗАДАНИЕ
+        ========================= */
+
+        .task {
+            background: #111b2d;
+            border-left: 4px solid #f2cc60;
+            padding: 22px;
+            border-radius: 10px;
+            color: #d8dee9;
+            line-height: 1.8;
+            white-space: pre-line;
+            font-size: 16px;
+        }
+
+        .result {
+            background: #10251a;
+            border-left: 4px solid #3fb950;
+            padding: 22px;
+            border-radius: 10px;
+            color: #d8f3dc;
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        /* =========================
+           НАВИГАЦИЯ УРОКОВ
+        ========================= */
+
+        .lesson-navigation {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-top: 30px;
+            margin-bottom: 50px;
+        }
+
+        .lesson-nav-button {
+            text-decoration: none;
+            color: white;
+            background: #1f6feb;
+            border: 1px solid #388bfd;
+            padding: 13px 22px;
+            border-radius: 9px;
+            transition: 0.2s;
+        }
+
+        .lesson-nav-button:hover {
+            background: #388bfd;
+        }
+
+        .disabled {
+            visibility: hidden;
+        }
+
+        /* =========================
+           АДАПТИВНОСТЬ
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                height: auto;
+                padding: 15px 4%;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-buttons {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .container {
+                width: 94%;
+                margin: 25px auto;
+            }
+
+            .lesson-header,
+            .lesson-section {
+                padding: 22px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            pre {
+                font-size: 13px;
+            }
+
+            .lesson-navigation {
+                flex-direction: column;
+            }
+
+            .lesson-nav-button {
+                text-align: center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     ВЕРХНЕЕ МЕНЮ
+========================= -->
+
+<nav class="navbar">
+
+    <a href="/learn" class="logo">
+        🐍 Python<span>School</span>
+    </a>
+
+    <div class="nav-buttons">
+
+        <a href="/learn" class="nav-button">
+            📚 Обучение
+        </a>
+
+        <a href="/" class="nav-button home-button">
+            🏠 Главная
+        </a>
+
+        <a href="/admin" class="nav-button">
+            🔐 Админ
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================
+     УРОК
+========================= -->
+
+<main class="container">
+
+
+    <!-- ЗАГОЛОВОК -->
+
+    <section class="lesson-header">
+
+        <div class="lesson-number">
+            УРОК {{ lesson.number }} / {{ total_lessons }}
+        </div>
+
+        <h1>
+            {{ lesson.title }}
+        </h1>
+
+        <div class="description">
+            {{ lesson.description }}
+        </div>
+
+    </section>
+
+
+    <!-- ТЕОРИЯ -->
+
+    <section class="lesson-section">
+
+        <h2>
+            📖 Теория
+        </h2>
+
+        <div class="theory">
+            {{ lesson.theory }}
+        </div>
+
+    </section>
+
+
+    <!-- ПРИМЕР КОДА -->
+
+    <section class="lesson-section">
+
+        <h2>
+            💻 Пример кода
+        </h2>
+
+        <div class="code-wrapper">
+
+            <div class="code-label">
+                main.py
+            </div>
+
+            <pre><code>{{ lesson.code }}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- ЗАДАНИЕ -->
+
+    <section class="lesson-section">
+
+        <h2>
+            🧩 Практическое задание
+        </h2>
+
+        <div class="task">
+            {{ lesson.task }}
+        </div>
+
+    </section>
+
+
+    <!-- РЕЗУЛЬТАТ -->
+
+    <section class="lesson-section">
+
+        <h2>
+            🎯 Что должно получиться
+        </h2>
+
+        <div class="result">
+            {{ lesson.result }}
+        </div>
+
+    </section>
+
+
+    <!-- КНОПКИ -->
+
+    <div class="lesson-navigation">
+
+
+        {% if lesson.number > 1 %}
+
+            <a
+                href="/lesson/{{ lesson.number - 1 }}"
+                class="lesson-nav-button"
+            >
+                ← Предыдущий урок
+            </a>
+
+        {% else %}
+
+            <span class="lesson-nav-button disabled">
+                ← Предыдущий урок
+            </span>
+
+        {% endif %}
+
+
+        {% if lesson.number < total_lessons %}
+
+            <a
+                href="/lesson/{{ lesson.number + 1 }}"
+                class="lesson-nav-button"
+            >
+                Следующий урок →
+            </a>
+
+        {% else %}
+
+            <a
+                href="/learn"
+                class="lesson-nav-button"
+            >
+                🎉 Все уроки
+            </a>
+
+        {% endif %}
+
+
+    </div>
+
+
+</main>
+
+
+</body>
+
+</html>

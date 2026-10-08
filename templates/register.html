@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Регистрация — PythonSchool</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+
+            font-family: Arial, sans-serif;
+            color: #e6edf3;
+
+            background:
+                linear-gradient(
+                    rgba(11, 16, 32, 0.94),
+                    rgba(11, 16, 32, 0.97)
+                ),
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 39px,
+                    rgba(255, 255, 255, 0.03) 40px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 39px,
+                    rgba(255, 255, 255, 0.03) 40px
+                );
+
+            background-color: #0b1020;
+
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        /* ===== МЕНЮ ===== */
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 18px 30px;
+
+            background: rgba(10, 15, 30, 0.95);
+            border-bottom: 1px solid #29344d;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-links a {
+            color: #aeb9c8;
+            text-decoration: none;
+
+            padding: 9px 14px;
+            border-radius: 8px;
+
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+            background: #1f293d;
+        }
+
+
+        /* ===== РЕГИСТРАЦИЯ ===== */
+
+        .register-container {
+            width: 100%;
+            max-width: 450px;
+
+            margin: 70px auto;
+
+            padding: 20px;
+        }
+
+        .register-box {
+            background: rgba(22, 29, 48, 0.97);
+
+            border: 1px solid #29344d;
+
+            border-radius: 18px;
+
+            padding: 35px;
+
+            box-shadow:
+                0 15px 40px rgba(0, 0, 0, 0.35);
+        }
+
+        .register-box h1 {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #9da9b8;
+
+            margin-bottom: 30px;
+        }
+
+
+        /* ===== ПОЛЯ ===== */
+
+        label {
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: #c9d1d9;
+        }
+
+        input {
+            width: 100%;
+
+            padding: 13px;
+
+            margin-bottom: 20px;
+
+            border: 1px solid #39445c;
+            border-radius: 10px;
+
+            background: #0d1424;
+            color: white;
+
+            font-size: 16px;
+
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #2ea043;
+        }
+
+
+        /* ===== КНОПКА ===== */
+
+        .register-button {
+            width: 100%;
+
+            padding: 13px;
+
+            border: none;
+            border-radius: 10px;
+
+            background: #238636;
+            color: white;
+
+            font-size: 16px;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .register-button:hover {
+            background: #2ea043;
+        }
+
+
+        /* ===== ССЫЛКА ===== */
+
+        .back-link {
+            display: block;
+
+            text-align: center;
+
+            margin-top: 25px;
+
+            color: #8b949e;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            color: white;
+        }
+
+
+        /* ===== ТЕЛЕФОН ===== */
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .register-container {
+                margin-top: 30px;
+            }
+
+            .register-box {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- ===== МЕНЮ ===== -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        🐍 PythonSchool
+    </div>
+
+    <div class="nav-links">
+
+        <a href="/">
+            Главная
+        </a>
+
+        <a href="/lesson/1">
+            Уроки
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- ===== ФОРМА ===== -->
+
+<div class="register-container">
+
+    <div class="register-box">
+
+        <h1>
+            👤 Регистрация
+        </h1>
+
+        <p class="subtitle">
+            Создай аккаунт в PythonSchool
+        </p>
+
+
+        <form method="POST">
+
+            <label for="username">
+                Имя пользователя
+            </label>
+
+            <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Например: Alex"
+                required
+            >
+
+
+            <label for="password">
+                Пароль
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Придумай пароль"
+                required
+            >
+
+
+            <button
+                type="submit"
+                class="register-button"
+            >
+                Зарегистрироваться
+            </button>
+
+        </form>
+
+
+        <a
+            href="/"
+            class="back-link"
+        >
+            ← Вернуться на главную
+        </a>
+
+    </div>
+
+</div>
+
+
+</body>
+</html>

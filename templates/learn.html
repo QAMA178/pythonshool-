@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Обучение Python — PythonSchool</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+
+            font-family: Arial, sans-serif;
+            color: #e6edf3;
+
+            background:
+                linear-gradient(
+                    rgba(7, 12, 24, 0.91),
+                    rgba(7, 12, 24, 0.96)
+                ),
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 39px,
+                    rgba(255, 255, 255, 0.025) 40px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 39px,
+                    rgba(255, 255, 255, 0.025) 40px
+                );
+
+            background-color: #070c18;
+        }
+
+
+        /* МЕНЮ */
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 18px 30px;
+
+            background: rgba(10, 15, 30, 0.96);
+
+            border-bottom: 1px solid #29344d;
+
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+
+        .nav-links a {
+            color: #aeb9c8;
+
+            text-decoration: none;
+
+            padding: 9px 14px;
+
+            border-radius: 8px;
+
+            transition: 0.2s;
+        }
+
+
+        .nav-links a:hover {
+            color: white;
+            background: #1f293d;
+        }
+
+
+        /* АДМИН */
+
+        .admin-button {
+            background: #303b55;
+            color: white !important;
+        }
+
+
+        .admin-button:hover {
+            background: #465574 !important;
+        }
+
+
+        /* ОСНОВА */
+
+        .container {
+            max-width: 1100px;
+
+            margin: auto;
+
+            padding: 60px 20px;
+        }
+
+
+        .welcome {
+            text-align: center;
+
+            margin-bottom: 50px;
+        }
+
+
+        .welcome h1 {
+            font-size: 46px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .welcome p {
+            color: #9da9b8;
+
+            font-size: 19px;
+        }
+
+
+        /* КАРТОЧКИ */
+
+        .lessons {
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(260px, 1fr)
+                );
+
+            gap: 20px;
+        }
+
+
+        .lesson {
+            background: rgba(22, 29, 48, 0.96);
+
+            border: 1px solid #29344d;
+
+            border-radius: 16px;
+
+            padding: 25px;
+
+            transition: 0.2s;
+        }
+
+
+        .lesson:hover {
+            transform: translateY(-4px);
+
+            border-color: #5c6f91;
+        }
+
+
+        .number {
+            color: #58a6ff;
+
+            font-weight: bold;
+
+            margin-bottom: 10px;
+        }
+
+
+        .lesson h2 {
+            margin-top: 0;
+
+            color: white;
+        }
+
+
+        .lesson p {
+            color: #aeb9c8;
+
+            line-height: 1.6;
+        }
+
+
+        .button {
+            display: inline-block;
+
+            margin-top: 10px;
+
+            padding: 11px 18px;
+
+            background: #238636;
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 9px;
+
+            transition: 0.2s;
+        }
+
+
+        .button:hover {
+            background: #2ea043;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* ПОДВАЛ */
+
+        footer {
+            text-align: center;
+
+            padding: 40px 20px;
+
+            color: #6e7681;
+        }
+
+
+        /* ТЕЛЕФОН */
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                flex-direction: column;
+
+                gap: 15px;
+            }
+
+            .welcome h1 {
+                font-size: 36px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- МЕНЮ -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        🐍 PythonSchool
+    </div>
+
+
+    <div class="nav-links">
+
+        <a href="/learn">
+            Обучение
+        </a>
+
+        <a
+            href="/admin"
+            class="admin-button"
+        >
+            🔐 Админ
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- ПРИВЕТСТВИЕ -->
+
+<div class="container">
+
+    <div class="welcome">
+
+        <h1>
+            🐍 Изучение Python
+        </h1>
+
+        <p>
+            100 уроков от самых основ до создания собственных программ
+        </p>
+
+    </div>
+
+
+    <!-- УРОКИ -->
+
+    <div class="lessons">
+
+        {% for lesson in lessons %}
+
+        <div class="lesson">
+
+            <div class="number">
+                УРОК {{ lesson.number }}
+            </div>
+
+            <h2>
+                {{ lesson.title }}
+            </h2>
+
+            <p>
+                {{ lesson.description }}
+            </p>
+
+            <a
+                class="button"
+                href="/lesson/{{ lesson.number }}"
+            >
+                Начать урок →
+            </a>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+
+<footer>
+
+    PythonSchool © 2026
+
+</footer>
+
+
+</body>
+
+</html>

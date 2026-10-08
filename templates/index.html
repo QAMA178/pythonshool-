@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PythonSchool — обучение Python</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #e6edf3;
+            min-height: 100vh;
+
+            background:
+                linear-gradient(
+                    rgba(11, 16, 32, 0.94),
+                    rgba(11, 16, 32, 0.97)
+                ),
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 39px,
+                    rgba(255, 255, 255, 0.03) 40px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 39px,
+                    rgba(255, 255, 255, 0.03) 40px
+                );
+
+            background-color: #0b1020;
+        }
+
+
+        /* ===== МЕНЮ ===== */
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 18px 30px;
+
+            background: rgba(10, 15, 30, 0.95);
+            border-bottom: 1px solid #29344d;
+
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-links a {
+            color: #aeb9c8;
+            text-decoration: none;
+
+            padding: 9px 14px;
+            border-radius: 8px;
+
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+            background: #1f293d;
+        }
+
+
+        /* ===== ШАПКА ===== */
+
+        header {
+            text-align: center;
+            padding: 70px 20px 45px;
+        }
+
+        header h1 {
+            font-size: 50px;
+            margin: 0 0 15px;
+        }
+
+        header p {
+            color: #9da9b8;
+            font-size: 20px;
+        }
+
+        .code-decoration {
+            color: #6e7681;
+            font-family: monospace;
+            margin-bottom: 20px;
+        }
+
+
+        /* ===== ОСНОВНОЙ КОНТЕНТ ===== */
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .title {
+            font-size: 30px;
+            margin-bottom: 25px;
+        }
+
+
+        /* ===== КАРТОЧКИ УРОКОВ ===== */
+
+        .lesson {
+            background: rgba(22, 29, 48, 0.95);
+
+            border: 1px solid #29344d;
+
+            padding: 25px;
+            margin-bottom: 18px;
+
+            border-radius: 16px;
+
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .lesson:hover {
+            transform: translateY(-3px);
+            border-color: #5c6f91;
+        }
+
+        .lesson h2 {
+            margin-top: 0;
+            color: #ffffff;
+        }
+
+        .lesson p {
+            color: #aeb9c8;
+            line-height: 1.6;
+        }
+
+
+        /* ===== КНОПКИ ===== */
+
+        .button {
+            display: inline-block;
+
+            margin-top: 10px;
+
+            padding: 12px 20px;
+
+            background: #238636;
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 10px;
+
+            transition: 0.2s;
+        }
+
+        .button:hover {
+            background: #2ea043;
+            transform: translateY(-2px);
+        }
+
+
+        /* ===== ПОДВАЛ ===== */
+
+        footer {
+            text-align: center;
+
+            padding: 50px 20px;
+
+            color: #6e7681;
+        }
+
+
+        /* ===== ТЕЛЕФОН ===== */
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            header h1 {
+                font-size: 38px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- ===== МЕНЮ ===== -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        🐍 PythonSchool
+    </div>
+
+    <div class="nav-links">
+
+        <a href="/">
+            Главная
+        </a>
+
+        <a href="/lesson/1">
+            Уроки
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- ===== ШАПКА ===== -->
+
+<header>
+
+    <div class="code-decoration">
+        &lt;python&gt; // learning_mode = ON
+    </div>
+
+    <h1>
+        🐍 PythonSchool
+    </h1>
+
+    <p>
+        Изучай Python с нуля — шаг за шагом
+    </p>
+
+</header>
+
+
+<!-- ===== УРОКИ ===== -->
+
+<div class="container">
+
+    <h2 class="title">
+        📚 Уроки
+    </h2>
+
+
+    <div class="lesson">
+
+        <h2>
+            Урок 1 — Знакомство с Python
+        </h2>
+
+        <p>
+            Узнаем, что такое Python и напишем
+            свою первую программу.
+        </p>
+
+        <a class="button" href="/lesson/1">
+            Начать урок →
+        </a>
+
+    </div>
+
+
+    <div class="lesson">
+
+        <h2>
+            Урок 2 — Переменные
+        </h2>
+
+        <p>
+            Узнаем, что такое переменные
+            и как хранить в них информацию.
+        </p>
+
+        <a class="button" href="/lesson/2">
+            Начать урок →
+        </a>
+
+    </div>
+
+
+    <div class="lesson">
+
+        <h2>
+            Урок 3 — Числа и вычисления
+        </h2>
+
+        <p>
+            Научимся работать с числами
+            и выполнять математические операции.
+        </p>
+
+        <a class="button" href="/lesson/3">
+            Начать урок →
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- ===== ПОДВАЛ ===== -->
+
+<footer>
+
+    PythonSchool © 2026
+
+</footer>
+
+
+</body>
+</html>
